@@ -1,42 +1,50 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import AxiosInstance from './AxiosInstance'
-import Modal from './Modal'
+import { useEffect, useState } from "react";
+import "./App.css";
+import AxiosInstance from "./AxiosInstance";
+import Modal from "./Modal";
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
 
-  const [showModal, setShowModal] = useState(false)
-
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchData()
-  },[])
+    fetchData();
+  }, []);
 
-  const fetchData = async() => {
+  const fetchData = async () => {
     try {
-      const response = await AxiosInstance.get('students')
-      setData(response.data)
+      const response = await AxiosInstance.get("students");
+      setData(response.data);
     } catch (err) {
-      alert("Error !")
+      alert("Error !");
     }
-  }
+  };
 
-  console.log(data)
+  console.log(data);
 
   return (
     <>
-    <section className='bg-gray-100 w-full h-[85vh]'></section>
+      <section className="bg-gray-100 w-full h-[85vh]">
+        <h1>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
+          voluptatem eaque exercitationem dignissimos perferendis! Quia quis
+          maiores sit non nesciunt!
+        </h1>
+      </section>
 
-    <section className=' w-full h-[15vh] flex justify-center items-center'>
-      <button onClick={() => setShowModal(true)} className='bg-black text-white font-bold px-5 py-3 rounded-md text-2xl'>+</button>
-    </section>
+      <section className=" w-full h-[15vh] flex justify-center items-center">
+        <button
+          onClick={() => setShowModal(true)}
+          className="bg-black text-white font-bold px-5 py-3 rounded-md text-2xl"
+        >
+          +
+        </button>
+      </section>
 
-    {
-      showModal && <Modal setShowModal={setShowModal} fetchData={fetchData}/>  
-    }
+      {showModal && <Modal setShowModal={setShowModal} fetchData={fetchData} />}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
